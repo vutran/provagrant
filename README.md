@@ -25,6 +25,11 @@ Within the Terminal, start the Vagrant box:
 
 `bootstrap.sh` will be executed during the the setup of the virtual machine. Please refer to `bootstrap.sh` for more information.
 
+# To-Do
+
+* Extract configuration into separate INI file
+* Setup script to create a default virtual host
+
 # Credits
 
 * [Venison](https://github.com/tjstein/venison)
