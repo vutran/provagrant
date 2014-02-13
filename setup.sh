@@ -2,7 +2,7 @@
  
 # -- User Defined Variables --# 
 hostname='local.vagranttest.com'            # Your hostname (e.g. example.com)
-sudo_user='admin'                           # Your sudo username
+sudo_user='vagrantadmin'                           # Your sudo username
 sudo_user_passwd='vagranttest'              # Your sudo user password
 mysql_root_passwd='vagrantmysqlroot'
 ssh_port='22'                               # Your SSH port if you wish to change it from the default
@@ -41,6 +41,21 @@ setHostname()
     hostname $hostname
     echo $hostname > /etc/hostname
     echo "127.0.0.1 $hostname" >> /etc/hostname
+    echo "done."
+  fi
+}
+
+setupSudoUser()
+{
+  if [ -n "$sudo_user" -a -n "$sudo_user_passwd" ]
+  then
+    id $sudo_user > /dev/null 2>&1 && echo "Cannot create sudo user! User $sudo_user already exists!" && touch tmp/sudofailed.$$ && return
+    echo -n "Creating sudo user... "
+    useradd -d /home/$sudo_user -s /bin/bash -m $sudo_user
+    echo "$sudo_user:$sudo_user_passwd" | chpasswd
+    echo "$sudo_user ALL=(ALL) ALL" >> /etc/sudoers
+    { echo 'export PS1="\[\e[32;1m\]\u\[\e[0m\]\[\e[32m\]@\h\[\e[36m\]\w \[\e[33m\]\$ \[\e[0m\]"'
+    } >> /home/$sudo_user/.bashrc
     echo "done."
   fi
 }
@@ -119,6 +134,7 @@ cleanup
 setLocale
 setHostname
 setTimezone
+setupSudoUser
 upgradeAptitude
 
 if $includeGit; then setupGit; fi
