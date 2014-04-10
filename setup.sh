@@ -135,7 +135,7 @@ setupGit()
 setupNginx()
 {
   echo -n "Installing Nginx... "
-  add-apt-repository ppa:nginx/stable > /dev/null 2>&1
+  add-apt-repository -y ppa:nginx/stable > /dev/null 2>&1
   aptitude -y update > /dev/null 2>&1
   aptitude -y install nginx > /dev/null 2>&1
   echo "done."
@@ -144,7 +144,7 @@ setupNginx()
 setupPhp()
 {
   echo -n "Installing PHP... "
-  add-apt-repository ppa:ondrej/php5 > /dev/null 2>&1
+  add-apt-repository -y ppa:ondrej/php5 > /dev/null 2>&1
   aptitude -y update > /dev/null 2>&1
   aptitude -y install php5-cli php5-common php5-mysql php5-suhosin php5-gd php5-curl > /dev/null 2>&1
   aptitude -y install php5-fpm php5-cgi php-pear php-apc php5-dev libpcre3-dev > /dev/null 2>&1
