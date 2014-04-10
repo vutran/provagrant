@@ -1,6 +1,6 @@
 # ProVagrant
 
-Provision a server with Vagrant. 
+Provision a development environment with Vagrant.
 
 # Before doing anything, please install Vagrant and VirtualBox
 
@@ -23,7 +23,7 @@ Within the Terminal, start the Vagrant box:
 
 # Provision the Environment
 
-`bootstrap.sh` will be executed during the the setup of the virtual machine. Please refer to `bootstrap.sh` for more information.
+`setup.sh` will be executed during the the setup of the virtual machine. Please refer to `setup.sh` for more information.
 
 # To-Do
 
